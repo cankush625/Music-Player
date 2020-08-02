@@ -1,19 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:music_player/Home/playSong.dart';
-import 'package:assets_audio_player/assets_audio_player.dart';
 
 class Home extends StatefulWidget {
   @override
   _HomeState createState() => _HomeState();
-
-  Function playPause() {
-    assetsAudioPlayer.open(
-      Audio('assets/audios/Alone-Alan-Walker.mp3',
-      ),
-      autoStart: true,
-    );
-  }
 }
 
 class _HomeState extends State<Home> {
@@ -24,137 +14,83 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-      title: Text('Music Player'),
+        title: Text('Hybrid Media Player'),
+        backgroundColor: Colors.grey[700],
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(Icons.account_circle),
+            onPressed: () {
+            },
+          ),
+        ],
       ),
-      backgroundColor: Colors.pinkAccent[100],
+      backgroundColor: Colors.black,
       body: SafeArea(
-        child: Column(
-          children: <Widget>[
-            Padding(
-              padding: const EdgeInsets.fromLTRB(0, 20, 0, 20),
-              child: Container(
-                child: Text(
-                  'My Playlist',
-                  style: TextStyle(
-                    fontSize: 25,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ),
-            ),
-            Container(
-              width: double.infinity,
-              height: 80,
-              child: Card(
-                color: Colors.greenAccent,
+        child: Padding(
+          padding: const EdgeInsets.fromLTRB(20, 30, 0, 0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              GestureDetector(
                 child: Row(
                   children: <Widget>[
                     Container(
-                      margin: EdgeInsets.only(left: 30),
-                      child: Center(
-                        child: Text(
-                          'Alone - Alan Walker',
-                          style: TextStyle(
-                            fontSize: 22,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.grey[700],
-                          ),
-                        ),
+                      child: Image.asset(
+                        'assets/images/audio.png',
+                        height: 150,
+                        width: 150,
+                      ),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(150),
                       ),
                     ),
-                    Expanded(
-                      child: Padding(
-                        padding: const EdgeInsets.only(right: 20),
-                        child: IconButton(
-                          alignment: Alignment.centerRight,
-                          icon: Icon(Icons.play_circle_filled),
-                          onPressed: () {
-                            Song song = new Song();
-                            song.playPause();
-                            Navigator.pushNamed(context, '/playSong', arguments: {'songName': 'Alone-Alan-Walker'});
-                          },
-                        ),
-                      ),
+                    SizedBox(
+                      width: 30,
                     ),
+                    Text(
+                      'Music Player',
+                      style: TextStyle(
+                        fontSize: 25,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                      ),
+                    )
                   ],
                 ),
+                onTap: () {
+                  Navigator.pushNamed(context, '/audio');
+                },
               ),
-            ),
-
-            Container(
-              width: double.infinity,
-              height: 80,
-              child: Card(
-                color: Colors.greenAccent,
+              SizedBox(
+                height: 30,
+              ),
+              GestureDetector(
                 child: Row(
                   children: <Widget>[
-                    Container(
-                      margin: EdgeInsets.only(left: 30),
-                      child: Center(
-                        child: Text(
-                          'Faded',
-                          style: TextStyle(
-                            fontSize: 22,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.grey[700],
-                          ),
-                        ),
-                      ),
+                    Image.asset(
+                      'assets/images/video.png',
+                      height: 150,
+                      width: 150,
                     ),
-                    Expanded(
-                      child: Padding(
-                        padding: const EdgeInsets.only(right: 20),
-                        child: IconButton(
-                          alignment: Alignment.centerRight,
-                          icon: Icon(Icons.play_circle_filled),
-                          onPressed: () {
-                            Navigator.pushNamed(context, '/playSong', arguments: {'songName': 'Ab'});
-                          },
-                        ),
-                      ),
+                    SizedBox(
+                      width: 30,
                     ),
+                    Text(
+                      'Video Player',
+                      style: TextStyle(
+                        fontSize: 25,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                      ),
+                    )
                   ],
                 ),
+                onTap: () {
+                  Navigator.pushNamed(context, '/video');
+                },
               ),
-            ),
-
-            Container(
-              width: double.infinity,
-              height: 80,
-              child: Card(
-                color: Colors.greenAccent,
-                child: Row(
-                  children: <Widget>[
-                    Container(
-                      margin: EdgeInsets.only(left: 30),
-                      child: Center(
-                        child: Text(
-                          'Abc',
-                          style: TextStyle(
-                            fontSize: 22,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.grey[700],
-                          ),
-                        ),
-                      ),
-                    ),
-                    Expanded(
-                      child: Padding(
-                        padding: const EdgeInsets.only(right: 20),
-                        child: IconButton(
-                          alignment: Alignment.centerRight,
-                          icon: Icon(Icons.play_circle_filled),
-                          onPressed: () {
-                            Navigator.pushNamed(context, '/playSong', arguments: {'songName': 'Abc'});
-                          },
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
